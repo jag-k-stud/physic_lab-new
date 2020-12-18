@@ -1,0 +1,80 @@
+:root {
+  --space: 1rem;
+  --resistor-width: 150px;
+  --resistor-height: 50px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Tahoma", sans-serif;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.container {
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.resistors__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(var(--resistor-width) + var(--space) * 2);
+}
+
+
+.resistors__list-result {
+  position: relative;
+  min-width: calc(var(--resistor-width) + var(--space) * 2);
+  min-height: calc(var(--resistor-height) + var(--space) * 2);
+  /*background: gray;*/
+  padding: var(--space);
+  border: black dashed;
+}
+.resistors__list-result:before {
+  position: absolute;
+  z-index: -1;
+  text-align: center;
+  top: 0;
+  padding: calc(var(--resistor-height)/ 2 + var(--space)) 0;
+  content: "Место для резистора";
+}
+.resistors__list-result .resistors__item {
+  margin: 0;
+}
+
+.resistors__item {
+  display: block;
+  background-color: orange;
+  color: white;
+  text-align: center;
+  align-content: center;
+  padding: calc(var(--resistor-height) / 2);
+  margin: var(--space);
+  width: calc(var(--resistor-width) - var(--space) * 2);
+  border-radius: 10px;
+
+  transition: background-color 0.5s;
+  cursor: move;
+}
+
+.resistors__item-disabled, .resistors__item.selected {
+  opacity: 0.2;
+}
+
+.resistor__item:last-child {
+  margin-bottom: 0;
+}
+
+.selected {
+  opacity: 0.6;
+}
