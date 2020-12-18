@@ -6,24 +6,48 @@
   <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-
 <div class="container">
+  <div class="block">
+    <h3>Резисторы</h3>
+    <ul class="resistors__list resistors__list-result" data-children="1"></ul>
+    <ul class="resistors__list">
+      <li class="resistors__item" data-value="15" draggable="true">#1</li>
+      <li class="resistors__item" data-value="13" draggable="true">#2</li>
+      <li class="resistors__item" data-value="0.5" draggable="true">#3</li>
+      <li class="resistors__item" data-value="3" draggable="true">#4</li>
+    </ul>
+  </div>
+  <div class="block">
+    <h3>Данные установки</h3>
 
-  <ul class="resistors__list resistors__list-result" data-children="1" onchange="console.log(event)">
-  </ul>
-  <h3>Резисторы</h3>
-  <ul class="resistors__list">
-    <li class="resistors__item" data-value="15" draggable="true">#1</li>
-    <li class="resistors__item" data-value="13" draggable="true">#2</li>
-    <li class="resistors__item" data-value="0,5" draggable="true">#3</li>
-    <li class="resistors__item" data-value="3" draggable="true">#4</li>
-  </ul>
+    <label>
+      Вариант
+      <select class="variant">
+        <option value="10">Вариант №1 (10 Ом)</option>
+        <option value="15">Вариант №2 (15 Ом)</option>
+        <option value="3">Вариант №3 (3 Ом)</option>
+        <option value="0.5">Вариант №4 (0.5 Ом)</option>
+      </select>
+    </label>
 
-  <label>
-    <input class="switcher" disabled type="checkbox">
-    Включить установку
-  </label>
+    <label>
+      <input class="switcher" disabled type="checkbox">
+      Включить установку
+    </label>
 
+    <label>
+      <input class="display_ohm" type="checkbox">
+      Показывать Омы (для проверки)
+    </label>
+
+    <label><!--U-->
+      V<input class="display_voltage" data-default="12" readonly step="0.001" type="number" value="0.00">
+    </label>
+
+    <label><!--I-->
+      A<input class="display_ampere" readonly step="0.001" type="number" value="0.00">
+    </label>
+  </div>
 </div>
 
 <script src="script.js"></script>

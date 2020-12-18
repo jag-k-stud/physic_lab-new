@@ -9,14 +9,37 @@ const getNextElement = (cursorPosition, currentElement) => {
 };
 
 const resistorListResultElement = document.querySelector(`.resistors__list-result`)
-const checkbox = document.querySelector(`.switcher`)
+const switcher = document.querySelector(`.switcher`)
+const displayOhm = document.querySelector(`.display_ohm`)
 
-checkbox.addEventListener('click', (evt) => {
+const voltage = document.querySelector(`.display_voltage`)
+const ampere = document.querySelector(`.display_ampere`)
+const variant = document.querySelector(`.variant`)
+
+const calculate = (bool) => {
+  const resistor1 = +variant.value;
+  const resistor2 = +resistorListResultElement.firstChild.dataset.value;
+  if (bool) {
+    voltage.value = voltage.dataset.default;
+    const resistance = (resistor1 * resistor2) / (resistor1 + resistor2)
+    console.log(resistor1, resistor2, resistance);
+
+    ampere.value = voltage.value / resistance;
+  } else {
+    voltage.value = 0;
+    ampere.value = 0;
+  }
+}
+
+switcher.addEventListener('click', (evt) => {
   const enabled = evt.target.checked;
 
   for (const child of resistorListResultElement.children) {
-    child.draggable = !enabled
+    child.draggable = !enabled;
   }
+  if (enabled) variant.disabled = true;
+  else variant.removeAttribute(`disabled`);
+  calculate(enabled);
 })
 
 for (const resistorListElement of document.querySelectorAll(`.resistors__list`)) {
@@ -35,7 +58,7 @@ for (const resistorListElement of document.querySelectorAll(`.resistors__list`))
 
   resistorListElement.addEventListener(`dragleave`, (evt) => {
     if (evt.target.classList.contains(`resistors__list-result`)) {
-      checkbox.disabled = true;
+      switcher.disabled = true;
     }
   });
 
@@ -44,8 +67,9 @@ for (const resistorListElement of document.querySelectorAll(`.resistors__list`))
     t.classList.remove(`selected`);
 
     if (t.parentElement.classList.contains(`resistors__list-result`)) {
-      t.textContent = t.dataset.value + " Ом";
-      checkbox.removeAttribute(`disabled`);
+      if (displayOhm.checked)
+        t.textContent = t.dataset.value + " Ом";
+      switcher.removeAttribute(`disabled`);
     }
   });
   resistorListElement.addEventListener(`dragover`, (evt) => {
