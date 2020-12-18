@@ -54,7 +54,7 @@ body {
 
 .resistors__item {
   display: block;
-  background-color: orange;
+  background-color: red;
   color: white;
   text-align: center;
   align-content: center;
@@ -65,6 +65,10 @@ body {
 
   transition: background-color 0.5s;
   cursor: move;
+}
+
+.resistors__item[draggable="true"] {
+  background-color: orange;
 }
 
 .resistors__item-disabled, .resistors__item.selected {

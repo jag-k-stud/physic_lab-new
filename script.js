@@ -8,6 +8,15 @@ const getNextElement = (cursorPosition, currentElement) => {
     currentElement.nextElementSibling;
 };
 
+const resistorListResultElement = document.querySelector(`.resistors__list-result`)
+const checkbox = document.querySelector(`.switcher`)
+
+checkbox.addEventListener('click', (evt) => {
+  for (const child of resistorListResultElement.children) {
+    child.draggable = !evt.target.checked
+  }
+})
+
 for (const resistorListElement of document.querySelectorAll(`.resistors__list`)) {
   const taskElements = resistorListElement.querySelectorAll(`.resistors__item`);
 
@@ -22,11 +31,19 @@ for (const resistorListElement of document.querySelectorAll(`.resistors__list`))
     t.textContent = t.getAttribute('aria-label');
   });
 
+  resistorListElement.addEventListener(`dragleave`, (evt) => {
+    if (evt.target.classList.contains(`resistors__list-result`)) {
+      checkbox.disabled = true;
+    }
+  });
+
   resistorListElement.addEventListener(`dragend`, (evt) => {
     const t = evt.target;
     t.classList.remove(`selected`);
+
     if (t.parentElement.classList.contains(`resistors__list-result`)) {
       t.textContent = t.dataset.value + " Ом";
+      checkbox.removeAttribute(`disabled`);
     }
   });
   resistorListElement.addEventListener(`dragover`, (evt) => {
@@ -48,8 +65,9 @@ for (const resistorListElement of document.querySelectorAll(`.resistors__list`))
 
     const children = +parentElement.dataset.children || -1;
     if (children !== -1) {
-      if (children >= parentElement.children.length + 1)
+      if (children >= parentElement.children.length + 1) {
         parentElement.appendChild(activeElement)
+      }
       return;
     }
 
