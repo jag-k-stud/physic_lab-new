@@ -40,6 +40,8 @@ switcher.addEventListener('click', (evt) => {
   for (const child of resistorListResultElement.children) {
     child.draggable = !enabled;
   }
+  if (enabled) variant.disabled = true;
+  else variant.removeAttribute(`disabled`);
   calculate(enabled);
 })
 
