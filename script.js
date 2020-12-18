@@ -18,12 +18,15 @@ const variant = document.querySelector(`.variant`)
 
 const calculate = (bool) => {
   const resistor1 = +variant.value;
-  const resistor2 = +resistorListResultElement.firstChild.dataset.value;
+  let resistance;
+
+  if (resistorListResultElement.firstChild) {
+    const resistor2 = +resistorListResultElement.firstChild.dataset.value;
+    resistance = (resistor1 * resistor2) / (resistor1 + resistor2)
+  } else resistance = resistor1;
+
   if (bool) {
     voltage.value = voltage.dataset.default;
-    const resistance = (resistor1 * resistor2) / (resistor1 + resistor2)
-    console.log(resistor1, resistor2, resistance);
-
     ampere.value = voltage.value / resistance;
   } else {
     voltage.value = 0;
@@ -37,8 +40,6 @@ switcher.addEventListener('click', (evt) => {
   for (const child of resistorListResultElement.children) {
     child.draggable = !enabled;
   }
-  if (enabled) variant.disabled = true;
-  else variant.removeAttribute(`disabled`);
   calculate(enabled);
 })
 
@@ -56,21 +57,13 @@ for (const resistorListElement of document.querySelectorAll(`.resistors__list`))
     t.textContent = t.getAttribute('aria-label');
   });
 
-  resistorListElement.addEventListener(`dragleave`, (evt) => {
-    if (evt.target.classList.contains(`resistors__list-result`)) {
-      switcher.disabled = true;
-    }
-  });
-
   resistorListElement.addEventListener(`dragend`, (evt) => {
     const t = evt.target;
     t.classList.remove(`selected`);
 
-    if (t.parentElement.classList.contains(`resistors__list-result`)) {
+    if (t.parentElement.classList.contains(`resistors__list-result`))
       if (displayOhm.checked)
         t.textContent = t.dataset.value + " Ом";
-      switcher.removeAttribute(`disabled`);
-    }
   });
   resistorListElement.addEventListener(`dragover`, (evt) => {
     evt.preventDefault();
