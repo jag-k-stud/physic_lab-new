@@ -12,8 +12,10 @@ const resistorListResultElement = document.querySelector(`.resistors__list-resul
 const checkbox = document.querySelector(`.switcher`)
 
 checkbox.addEventListener('click', (evt) => {
+  const enabled = evt.target.checked;
+
   for (const child of resistorListResultElement.children) {
-    child.draggable = !evt.target.checked
+    child.draggable = !enabled
   }
 })
 
