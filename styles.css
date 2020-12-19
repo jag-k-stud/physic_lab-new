@@ -125,14 +125,15 @@ body {
   user-select: none;
 }
 
-.switcher:checked + * .switcher--off, .switcher--on {
-  stroke: none;
+.switcher:checked + * .switcher__scheme {
+  transform: rotate(0) translate(7px);
 }
 
-.switcher:checked + * .switcher--on, .switcher--off {
-  stroke: black;
+.switcher__scheme {
+  transform-origin: 77px 45px;
+  transform: rotate(-15deg) translate(7px);
+  transition: transform 0.3s;
 }
-
 
 .display {
   background-color: gray;
