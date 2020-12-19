@@ -35,18 +35,16 @@ const calculate = (bool) => {
 
 switcher.addEventListener('click', (evt) => {
   const enabled = evt.target.checked;
+  if (enabled) document.body.classList.add(`active`);
+  else document.body.classList.remove(`active`);
 
   for (const child of resistorListResultElement.children) {
     child.draggable = !enabled;
-    if (enabled) child.classList.add(`active`);
-    else child.classList.remove(`active`);
   }
-  if (enabled) {
-    variant.disabled = true;
-  }
-  else {
-    variant.removeAttribute(`disabled`);
-  }
+
+  if (enabled) variant.disabled = true;
+  else variant.removeAttribute(`disabled`);
+
   calculate(enabled);
 })
 

@@ -105,7 +105,7 @@ body {
   display: block;
 }
 
-.active .resistors__item--background {
+.resistors__item[draggable="false"] .resistors__item--background {
   color: tomato;
 }
 
@@ -171,4 +171,37 @@ body {
   max-width: 100%;
   outline-color: #0f0;
   -moz-outline-radius: 0.5em;
+}
+
+.lamp, .lamp * {
+  stroke: black;
+  transition: stroke-width 0.1s, fill 0.3s, transform ease-in-out 0.4s;
+}
+
+.active .lamp__lamp {
+  transform: translate(0, 0);
+}
+
+.lamp__lamp {
+  transform: translate(0, -10px);
+}
+
+.lamp__light {
+  fill: transparent;
+  stroke-width: 0;
+}
+
+.lamp__bulb, .lamp__base {
+  fill: black;
+  stroke-width: 0;
+}
+
+.active .lamp__bulb, .active .lamp__light {
+  fill: #FFE75A;
+  stroke-width: 1px;
+}
+
+.active .lamp__base {
+  fill: silver;
+  stroke-width: 1px;
 }
