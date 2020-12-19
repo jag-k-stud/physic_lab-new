@@ -22,6 +22,7 @@ body {
   display: flex;
   flex-direction: row;
 }
+
 .block {
   margin: 2em;
   display: flex;
@@ -98,6 +99,7 @@ body {
 .active .resistors__item--background {
   color: tomato;
 }
+
 .resistors__item[draggable="true"] {
   cursor: move;
 }
@@ -108,6 +110,17 @@ body {
 
 .switcher {
   visibility: hidden;
+}
+.switcher__label {
+  user-select: none;
+}
+
+.switcher:checked + * .switcher--off, .switcher--on {
+  stroke: none;
+}
+
+.switcher:checked + * .switcher--on, .switcher--off {
+  stroke: black;
 }
 
 
