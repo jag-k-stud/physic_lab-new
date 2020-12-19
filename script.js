@@ -39,9 +39,15 @@ switcher.addEventListener('click', (evt) => {
 
   for (const child of resistorListResultElement.children) {
     child.draggable = !enabled;
+    if (enabled) child.classList.add(`active`);
+    else child.classList.remove(`active`);
   }
-  if (enabled) variant.disabled = true;
-  else variant.removeAttribute(`disabled`);
+  if (enabled) {
+    variant.disabled = true;
+  }
+  else {
+    variant.removeAttribute(`disabled`);
+  }
   calculate(enabled);
 })
 
@@ -50,13 +56,15 @@ for (const resistorListElement of document.querySelectorAll(`.resistors__list`))
 
   for (const task of taskElements) {
     task.draggable = true;
+    task.classList.remove(`active`);
     task.setAttribute('aria-label', task.textContent);
+    task.dataset.html = task.innerHTML;
   }
 
   resistorListElement.addEventListener(`dragstart`, (evt) => {
     const t = evt.target;
     t.classList.add(`selected`);
-    t.textContent = t.getAttribute('aria-label');
+    t.innerHTML = t.dataset.html;
   });
 
   resistorListElement.addEventListener(`dragend`, (evt) => {
