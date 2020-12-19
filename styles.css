@@ -1,7 +1,10 @@
 :root {
-  --space: 1rem;
-  --resistor-width: 170px;
-  --resistor-height: 25px;
+  --space: 10px;
+  --line-height: 1.4em;
+  --resistor-real-width: 250px;
+  --resistor-real-height: 70px;
+  --resistor-width: calc(var(--resistor-real-width) * 1);
+  --resistor-height: calc(var(--resistor-real-height) * 1);
 }
 
 html, body {
@@ -12,7 +15,7 @@ html, body {
 body {
   font-family: "Tahoma", sans-serif;
   font-size: 18px;
-  line-height: 25px;
+  line-height: var(--line-height);
 }
 
 .container {
@@ -27,26 +30,25 @@ body {
 
 .resistors__list {
   margin: var(--space);
-  padding: var(--space);
+  padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: black dashed;
-  width: calc(var(--resistor-width) + var(--space) * 2);
-  min-height: calc(var(--resistor-height) + var(--space) * 2);
+  width: calc(var(--resistor-width));
+  min-height: calc(var(--resistor-height) + var(--line-height));
 }
 
-
-.resistors__list-result {
+.resistors__list--result {
   position: relative;
 }
 
-.resistors__list-result:empty:before {
+.resistors__list--result:empty:before {
   content: "Место для резистора";
 }
 
-.resistors__list-result:before {
+.resistors__list--result:before {
   content: "";
   background: rgba(0, 0, 0, 0.2);
   display: block;
@@ -57,10 +59,11 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  padding: calc(var(--resistor-height) / 2 + var(--space)) 0;
+  justify-content: center;
+  padding: calc((var(--resistor-height) - var(--space)) / 2) 0;
 }
 
-.resistors__list-result .resistors__item {
+.resistors__list--result .resistors__item {
   margin: 0;
 }
 
@@ -70,10 +73,10 @@ body {
   color: white;
   text-align: center;
   align-content: center;
-  padding: calc(var(--resistor-height) / 2);
-  margin: var(--space);
-  width: calc(var(--resistor-width) - var(--space) * 2);
-  transition: all 0.5s;
+  padding: calc(var(--resistor-height) / 2) 0;
+  margin: var(--space) 0;
+  width: var(--resistor-width);
+  transition: color 0.5s;
   user-select: none;
   cursor: not-allowed;
 }
@@ -89,23 +92,57 @@ body {
   width: 100%;
   height: 100%;
   transition: all 0.5s;
+  display: block;
 }
 
 .active .resistors__item--background {
-  fill: tomato;
+  color: tomato;
 }
 .resistors__item[draggable="true"] {
   cursor: move;
 }
 
-.resistors__list:last-child {
-  margin-bottom: 0;
-}
-
-.resistors__list:first-child {
-  margin-top: 0;
-}
-
 .selected {
   opacity: 0.6;
+}
+
+.switcher {
+  visibility: hidden;
+}
+
+
+.display {
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-gap: var(--space);
+  padding: var(--space);
+  max-width: calc(var(--resistor-width) / 2);
+  margin: var(--space);
+  color: #fff;
+  border-radius: 1em;
+
+}
+
+.display__label {
+  margin-top: var(--space);
+  display: block;
+  text-align: center;
+  width: var(--line-height);
+  height: var(--line-height);
+  border-radius: 50%;
+  background-color: darkgray;
+}
+
+.display__value {
+  border-radius: 0.5em;
+  border: none;
+  display: block;
+  direction: rtl;
+  padding-right: 0.25em;
+  background-color: #000;
+  color: #0f0;
+  font-size: 1.5em;
+  width: 100%;
 }

@@ -8,9 +8,8 @@ const getNextElement = (cursorPosition, currentElement) => {
     currentElement.nextElementSibling;
 };
 
-const resistorListResultElement = document.querySelector(`.resistors__list-result`)
+const resistorListResultElement = document.querySelector(`.resistors__list--result`)
 const switcher = document.querySelector(`.switcher`)
-const displayOhm = document.querySelector(`.display_ohm`)
 
 const voltage = document.querySelector(`.display_voltage`)
 const ampere = document.querySelector(`.display_ampere`)
@@ -57,23 +56,16 @@ for (const resistorListElement of document.querySelectorAll(`.resistors__list`))
   for (const task of taskElements) {
     task.draggable = true;
     task.classList.remove(`active`);
-    task.setAttribute('aria-label', task.textContent);
-    task.dataset.html = task.innerHTML;
   }
 
   resistorListElement.addEventListener(`dragstart`, (evt) => {
     const t = evt.target;
     t.classList.add(`selected`);
-    t.innerHTML = t.dataset.html;
   });
 
   resistorListElement.addEventListener(`dragend`, (evt) => {
     const t = evt.target;
     t.classList.remove(`selected`);
-
-    if (t.parentElement.classList.contains(`resistors__list-result`))
-      if (displayOhm.checked)
-        t.textContent = t.dataset.value + " Ом";
   });
   resistorListElement.addEventListener(`dragover`, (evt) => {
     evt.preventDefault();
