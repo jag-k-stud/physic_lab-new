@@ -6,6 +6,15 @@
   --resistor-width: calc(var(--resistor-real-width) * 1);
   --resistor-height: calc(var(--resistor-real-height) * 1);
 }
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
 
 html, body {
   margin: 0;
@@ -112,6 +121,7 @@ body {
   visibility: hidden;
 }
 .switcher__label {
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -149,13 +159,15 @@ body {
 }
 
 .display__value {
-  border-radius: 0.5em;
+  border-radius: var(--line-height);
   border: none;
-  display: block;
   direction: rtl;
-  padding-right: 0.25em;
+  padding: 0 0.25em;
   background-color: #000;
   color: #0f0;
   font-size: 1.5em;
-  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  outline-color: #0f0;
+  -moz-outline-radius: 0.5em;
 }
