@@ -78,11 +78,12 @@ body {
 
 .resistors__list--result:empty:before {
   content: "Место для резистора";
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .resistors__list--result:before {
   content: "";
-  background: rgba(0, 0, 0, 0.2);
+  border: black dashed;
   display: block;
   z-index: -2;
   position: absolute;
@@ -92,7 +93,7 @@ body {
   bottom: 0;
   left: 0;
   justify-content: center;
-  padding: calc((var(--resistor-height) - var(--line-height)) / 2) 0;
+  padding: calc((var(--resistor-height) - var(--line-height) - 1px) / 2) 0;
 }
 
 .resistors__list--result .resistors__item {
@@ -136,7 +137,7 @@ body {
 }
 
 .resistors__list--variant:before {
-  background-color: transparent;
+  border: none;
 }
 
 .selected {
