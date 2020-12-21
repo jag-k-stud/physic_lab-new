@@ -1,7 +1,0 @@
-<svg fill="none" height="90" viewBox="0 0 250 90" width="250" xmlns="http://www.w3.org/2000/svg">
-    <path class="switcher__scheme" d="M77 45H159" stroke="black" stroke-width="5"/>
-    <path d="M0 45H70" stroke="black" stroke-width="5"/>
-    <path d="M180 45H250" stroke="black" stroke-width="5"/>
-    <circle cx="77" cy="45" r="7.5" stroke="black" stroke-width="3"/>
-    <circle cx="172" cy="45" r="7.5" stroke="black" stroke-width="3"/>
-</svg>

@@ -1,5 +1,0 @@
-<svg class="wire wire__cross" fill="none" height="90" viewBox="0 0 120 90" width="120"
-     xmlns="http://www.w3.org/2000/svg">
-    <path d="M60 45H130M60 110V-10"/>
-    <circle cx="60" cy="45" class="wire__circle" r="7"/>
-</svg>
