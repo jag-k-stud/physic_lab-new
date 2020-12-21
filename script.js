@@ -10,6 +10,7 @@ const getNextElement = (cursorPosition, currentElement) => {
 
 const resistorListResultElement = document.querySelector(`.js-resistors__list--result`)
 const switcher = document.querySelector(`.switcher`)
+const board = document.querySelector(`.board`)
 
 const voltage = document.querySelector(`.display_voltage`)
 const ampere = document.querySelector(`.display_ampere`)
@@ -44,8 +45,8 @@ variant.addEventListener('change', setResistance, false);
 
 switcher.addEventListener('click', (evt) => {
   const enabled = evt.target.checked;
-  if (enabled) document.body.classList.add(`active`);
-  else document.body.classList.remove(`active`);
+  if (enabled) board.classList.add(`active`);
+  else board.classList.remove(`active`);
 
   for (const child of resistorListResultElement.children) {
     child.draggable = !enabled;
@@ -109,14 +110,14 @@ for (const resistorListElement of document.querySelectorAll(`.js-resistors__list
     resistor.classList.remove(`active`);
   }
 
-  resistorListElement.addEventListener(`dragstart`, dragstart, false);
-  resistorListElement.addEventListener(`dragend`, dragend, false);
-  resistorListElement.addEventListener(`dragover`, dragover, false);
+  resistorListElement.addEventListener(`dragstart`, dragstart);
+  resistorListElement.addEventListener(`dragend`, dragend);
+  resistorListElement.addEventListener(`dragover`, dragover);
 
 
-  resistorListElement.addEventListener(`touchstart`, dragstart, false);
-  resistorListElement.addEventListener(`touchend`, dragend, false);
-  resistorListElement.addEventListener(`touchmove`, dragover, false);
+  resistorListElement.addEventListener(`touchstart`, dragstart);
+  resistorListElement.addEventListener(`touchend`, dragend);
+  resistorListElement.addEventListener(`touchmove`, dragover);
 
 
 }

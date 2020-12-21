@@ -45,18 +45,18 @@ body {
 }
 
 .container {
+  margin: 2em;
   display: flex;
   flex-direction: row;
 }
 
 .block {
-  margin: 2em;
   display: flex;
   flex-direction: column;
 }
 
 .resistors__list {
-  margin: var(--space);
+  /*margin: var(--space);*/
   padding: 0;
   list-style: none;
   display: flex;
@@ -92,7 +92,7 @@ body {
   bottom: 0;
   left: 0;
   justify-content: center;
-  padding: calc((var(--resistor-height) - var(--space)) / 2) 0;
+  padding: calc((var(--resistor-height) - var(--line-height)) / 2) 0;
 }
 
 .resistors__list--result .resistors__item {
@@ -127,12 +127,16 @@ body {
   display: block;
 }
 
-.resistors__item[draggable="false"] .resistors__item--background {
+.active .resistors__item--background, .resistors__item[draggable="false"] .resistors__item--background {
   color: tomato;
 }
 
 .resistors__item[draggable="true"] {
   cursor: move;
+}
+
+.resistors__list--variant:before {
+  background-color: transparent;
 }
 
 .selected {
@@ -231,7 +235,7 @@ body {
 }
 
 
-.grid {
+.board {
   margin: 20px;
   display: grid;
   grid-template-columns: repeat(var(--grid-column), 120px);
@@ -251,4 +255,11 @@ body {
 .wire__circle {
   stroke: none;
   fill: black;
+}
+
+.variant {
+  display: block;
+  width: 100%;
+  height: 2em;
+  font-size: 1em;
 }
