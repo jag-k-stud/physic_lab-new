@@ -251,6 +251,10 @@ body {
   padding: 0;
 }
 
+.battery {
+  overflow: visible;
+}
+
 
 .wire__circle {
   stroke: none;
