@@ -8,12 +8,19 @@ const getNextElement = (cursorPosition, currentElement) => {
     currentElement.nextElementSibling;
 };
 
-const resistorListResultElement = document.querySelector(`.resistors__list--result`)
+const resistorListResultElement = document.querySelector(`.js-resistors__list--result`)
 const switcher = document.querySelector(`.switcher`)
 
 const voltage = document.querySelector(`.display_voltage`)
 const ampere = document.querySelector(`.display_ampere`)
 const variant = document.querySelector(`.variant`)
+
+const variantResistor = document.querySelector(`.resistors__item--variant .resistors__item--text`)
+
+const setResistance = () => {
+  variantResistor.textContent = variant.value + " Ом";
+}
+setResistance();
 
 const calculate = (bool) => {
   const resistor1 = +variant.value;
@@ -33,6 +40,8 @@ const calculate = (bool) => {
   }
 }
 
+variant.addEventListener('change', setResistance, false);
+
 switcher.addEventListener('click', (evt) => {
   const enabled = evt.target.checked;
   if (enabled) document.body.classList.add(`active`);
@@ -48,31 +57,23 @@ switcher.addEventListener('click', (evt) => {
   calculate(enabled);
 })
 
-for (const resistorListElement of document.querySelectorAll(`.resistors__list`)) {
-  const taskElements = resistorListElement.querySelectorAll(`.resistors__item`);
+const dragstart = (evt) => {
+  const t = evt.target;
+  t.classList.add(`selected`);
+}
+const dragend = (evt) => {
+  const t = evt.target;
+  t.classList.remove(`selected`);
+}
 
-  for (const task of taskElements) {
-    task.draggable = true;
-    task.classList.remove(`active`);
-  }
-
-  resistorListElement.addEventListener(`dragstart`, (evt) => {
-    const t = evt.target;
-    t.classList.add(`selected`);
-  });
-
-  resistorListElement.addEventListener(`dragend`, (evt) => {
-    const t = evt.target;
-    t.classList.remove(`selected`);
-  });
-  resistorListElement.addEventListener(`dragover`, (evt) => {
+const dragover = (evt) => {
     evt.preventDefault();
 
     const activeElement = document.querySelector(`.selected`);
     const currentElement = evt.target;
     const isMovable = activeElement !== currentElement && (
       currentElement.classList.contains(`resistors__item`) ||
-      currentElement.classList.contains(`resistors__list`)
+      currentElement.classList.contains(`js-resistors__list`)
     );
 
     const parentElement = currentElement.classList.contains(`resistors__item`) ?
@@ -101,5 +102,21 @@ for (const resistorListElement of document.querySelectorAll(`.resistors__list`))
 
       parentElement.insertBefore(activeElement, nextElement);
     }
-  });
+  }
+
+for (const resistorListElement of document.querySelectorAll(`.js-resistors__list`)) {
+  for (const resistor of resistorListElement.querySelectorAll(`.resistors__item`)) {
+    resistor.classList.remove(`active`);
+  }
+
+  resistorListElement.addEventListener(`dragstart`, dragstart, false);
+  resistorListElement.addEventListener(`dragend`, dragend, false);
+  resistorListElement.addEventListener(`dragover`, dragover, false);
+
+
+  resistorListElement.addEventListener(`touchstart`, dragstart, false);
+  resistorListElement.addEventListener(`touchend`, dragend, false);
+  resistorListElement.addEventListener(`touchmove`, dragover, false);
+
+
 }
