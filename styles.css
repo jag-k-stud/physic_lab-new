@@ -2,18 +2,35 @@
   --space: 10px;
   --line-height: 1.4em;
   --resistor-real-width: 250px;
-  --resistor-real-height: 70px;
-  --resistor-width: calc(var(--resistor-real-width) * 1);
-  --resistor-height: calc(var(--resistor-real-height) * 1);
+  --resistor-real-height: 90px;
+  --cel-width: 120px;
+  --cel-height: 90px;
+  --grid-column: 6;
+  --grid-row: 5;
+  --resistor-width: calc(var(--resistor-real-width));
+  --resistor-height: calc(var(--resistor-real-height));
 }
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+  visibility: hidden;
+}
+
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type=number] {
-    -moz-appearance:textfield;
+  -moz-appearance: textfield;
 }
 
 html, body {
@@ -47,11 +64,16 @@ body {
   align-items: center;
   border: black dashed;
   width: calc(var(--resistor-width));
-  min-height: calc(var(--resistor-height) + var(--line-height));
+  min-height: calc(var(--resistor-height));
 }
 
 .resistors__list--result {
+  border: none;
+  grid-column: 3 / 5;
   position: relative;
+  margin: 0;
+  width: var(--resistor-width);
+  height: var(--cel-height);
 }
 
 .resistors__list--result:empty:before {
@@ -83,7 +105,7 @@ body {
   color: white;
   text-align: center;
   align-content: center;
-  padding: calc(var(--resistor-height) / 2) 0;
+  padding: calc((var(--resistor-height) - var(--line-height)) / 2) 0;
   margin: var(--space) 0;
   width: var(--resistor-width);
   transition: color 0.5s;
@@ -117,21 +139,18 @@ body {
   opacity: 0.6;
 }
 
-.switcher {
-  visibility: hidden;
-}
 .switcher__label {
   -webkit-user-select: none;
   user-select: none;
 }
 
 .switcher:checked + * .switcher__scheme {
-  transform: rotate(0) translate(7px);
+  transform: rotate(0);
 }
 
 .switcher__scheme {
-  transform-origin: 77px 45px;
-  transform: rotate(-15deg) translate(7px);
+  transform-origin: 13px 45px;
+  transform: rotate(-15deg);
   transition: transform 0.3s;
 }
 
@@ -141,9 +160,10 @@ body {
   flex-direction: column;
   align-items: center;
   column-gap: var(--space);
-  padding: var(--space);
-  max-width: calc(var(--resistor-width) / 2);
-  margin: var(--space);
+  padding: var(--space) 0;
+  overflow: hidden;
+  width: var(--cel-width);
+  height: calc(var(--cel-height) - var(--space) * 2);
   color: #fff;
   border-radius: 1em;
 
@@ -160,22 +180,25 @@ body {
 }
 
 .display__value {
-  border-radius: var(--line-height);
   border: none;
   direction: rtl;
-  padding: 0 0.25em;
+  padding: 0 var(--space) 0 0;
+  margin: 0;
   background-color: #000;
   color: #0f0;
-  font-size: 1.5em;
-  min-width: 0;
-  max-width: 100%;
   outline-color: #0f0;
+  font-size: 1.5em;
+  width: var(--cel-width);
   -moz-outline-radius: 0.5em;
+}
+
+.lamp {
+  overflow: visible;
 }
 
 .lamp, .lamp * {
   stroke: black;
-  transition: stroke-width 0.1s, fill 0.3s, transform ease-in-out 0.4s;
+  transition: stroke-width 0.1s, fill 0.2s, transform ease-in-out 0.2s;
 }
 
 .active .lamp__lamp {
@@ -191,17 +214,41 @@ body {
   stroke-width: 0;
 }
 
-.lamp__bulb, .lamp__base {
+.lamp__bulb {
   fill: black;
   stroke-width: 0;
 }
 
+.lamp__base {
+  fill: black;
+  stroke-width: 1;
+  stroke: black;
+}
+
 .active .lamp__bulb, .active .lamp__light {
-  fill: #FFE75A;
+  fill: #ffe75a;
   stroke-width: 1px;
 }
 
-.active .lamp__base {
-  fill: silver;
-  stroke-width: 1px;
+
+.grid {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-column), 120px);
+  grid-template-rows: repeat(var(--grid-row), var(--cel-height));
+  grid-gap: var(--space);
+}
+
+.wire, .wire * {
+  stroke-width: 5;
+  stroke: black;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+}
+
+
+.wire__circle {
+  stroke: none;
+  fill: black;
 }

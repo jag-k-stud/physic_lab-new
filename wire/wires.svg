@@ -1,0 +1,10 @@
+<svg class="wire" fill="none" height="90" viewBox="0 0 120 90" width="120" xmlns="http://www.w3.org/2000/svg">
+    <g stroke-width="5" stroke="black">
+        <symbol id="angle-bl">
+            <path d="M-10 45H60V100"/>
+        </symbol>
+        <symbol id="line-h">
+            <path d="M-10 45H60H130"/>
+        </symbol>
+    </g>
+</svg>
