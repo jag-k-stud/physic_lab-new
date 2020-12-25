@@ -37,12 +37,7 @@
   },
   "config": {
     "forge": {
-      "electronPackagerConfig": {
-        "executableName": "physic-lab"
-      },
-      "packagerConfig": {
-        "executableName": "physic-lab"
-      },
+      "packagerConfig": {},
       "makers": [
         {
           "name": "@electron-forge/maker-deb",
