@@ -40,9 +40,29 @@
       "packagerConfig": {},
       "makers": [
         {
+          "name": "@electron-forge/maker-deb",
+          "platform": [
+            "linux"
+          ],
+          "config": {
+            "options": {
+              "categorises": [
+                "Education"
+              ],
+              "section": "education"
+            }
+          }
+        },
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "platform": [
+            "win32"
+          ]
+        },
+        {
           "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
+          "platform": [
+            "win32", "darwin", "linux"
           ],
           "config": {
             "name": "Лабораторная работа по физике"
@@ -50,10 +70,19 @@
         },
         {
           "name": "@electron-forge/maker-dmg",
+          "platforms": [
+            "darwin"
+          ],
           "config": {
             "format": "ULFO",
             "name": "Лабораторная по физике"
           }
+        },
+        {
+          "name": "@electron-forge/maker-pkg",
+          "platforms": [
+            "darwin"
+          ]
         }
       ],
       "publishers": [
@@ -61,10 +90,10 @@
           "name": "@electron-forge/publisher-github",
           "config": {
             "repository": {
-              "owner": "jag-k",
-              "name": "jag-k-stud/physic_lab-new"
+              "owner": "jag-k-stud",
+              "name": "physic_lab-new"
             },
-            "prerelease": true
+            "prerelease": false
           }
         }
       ]
