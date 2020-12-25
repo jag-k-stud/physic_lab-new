@@ -18,7 +18,11 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: ['8', '10', '12']
+        os: [ubuntu-latest, windows-latest, macOS-latest]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -30,7 +34,7 @@ jobs:
           node-version: '12.x'
 
       # Runs a set of commands using the runners shell
-      - name: npm install, build and test
+      - name: npm install, build and test on ${{ matrix.os }}
         run: |
           npm install
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run publish
