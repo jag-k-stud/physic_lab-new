@@ -1,0 +1,73 @@
+{
+  "name": "physic_lab-new",
+  "productName": "Лабораторная работа по физике",
+  "version": "1.0.0",
+  "description": "Лабораторная работа по физике",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jag-k-stud/physic_lab-new.git"
+  },
+  "keywords": [],
+  "author": "Jag_k",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jag-k-stud/physic_lab-new/issues"
+  },
+  "homepage": "http://jag-k-stud.github.io/physic_lab-new/",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@electron-forge/publisher-github": "^6.0.0-beta.54",
+    "electron": "^11.1.1"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "update-electron-app": "^2.0.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ],
+          "config": {
+            "name": "Лабораторная работа по физике"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "format": "ULFO",
+            "name": "Лабораторная по физике"
+          }
+        }
+      ],
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "jag-k",
+              "name": "jag-k-stud/physic_lab-new"
+            },
+            "prerelease": true
+          }
+        }
+      ]
+    }
+  }
+}
