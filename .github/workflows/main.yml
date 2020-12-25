@@ -40,5 +40,5 @@ jobs:
       - name: npm install, build and test on ${{ matrix.os }}
         run: |
           npm install
-          GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run publish
+          GITHUB_TOKEN="${{ secrets.GITHUB_TOKEN }}" npm run publish
 
