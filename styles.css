@@ -12,6 +12,10 @@
   --outline-color: orange;
 }
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 .visually-hidden {
   position: absolute !important;
   clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
@@ -177,7 +181,7 @@ body {
   padding: var(--space) 0;
   overflow: hidden;
   width: var(--cel-width);
-  height: calc(var(--cel-height) - var(--space) * 2);
+  height: var(--cel-height);
   color: #fff;
   border-radius: 1em;
 
@@ -201,7 +205,6 @@ body {
   margin: 0;
   background-color: #000;
   color: #0f0;
-  outline-color: #0f0;
   font-size: 1.5em;
   width: var(--cel-width);
   -moz-outline-radius: 0.5em;
