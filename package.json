@@ -38,7 +38,7 @@
   "config": {
     "forge": {
       "electronPackagerConfig": {
-        "name": "physic-lab"
+        "executableName": "physic-lab"
       },
       "packagerConfig": {},
       "makers": [
