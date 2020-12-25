@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
@@ -21,7 +21,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: ['8', '10', '12']
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -38,4 +37,4 @@ jobs:
         run: |
           npm install
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run publish
-        
+
