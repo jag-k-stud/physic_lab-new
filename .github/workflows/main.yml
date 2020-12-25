@@ -37,10 +37,10 @@ jobs:
           node-version: '12.x'
 
       # Runs a set of commands using the runners shell
-      - name: npm install, build and test on ${{ matrix.os }}
+      - name: npm install and build for ${{ matrix.os }}
         run: |
           npm install
-          export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          set GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           npm run publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
