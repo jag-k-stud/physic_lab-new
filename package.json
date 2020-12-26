@@ -1,5 +1,5 @@
 {
-  "name": "physic_lab-new",
+  "name": "physic_lab_resistors",
   "version": "1.0.3",
   "description": "Лабораторная работа по физике",
   "main": "main.js",
@@ -30,7 +30,7 @@
     "appId": "com.electron.${name}",
     "productName": "Лабораторная работа по физике",
     "copyright": "Copyright © 2020 ${author}",
-    "artifactName": "${productName}-${os}.${ext}",
+    "artifactName": "${name}-${os}.${ext}",
     "compression": "maximum",
     "publish": {
       "provider": "github",
