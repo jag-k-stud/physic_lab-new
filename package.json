@@ -1,97 +1,54 @@
 {
   "name": "physic_lab-new",
   "productName": "Лабораторная работа по физике",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Лабораторная работа по физике",
   "main": "main.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "start": "npx electron .",
+    "make": "electron-builder make",
+    "publish": "electron-builder build -p always"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jag-k-stud/physic_lab-new.git"
   },
   "keywords": [],
-  "author": "Jag_k",
+  "author": {
+    "name": "Jag_k",
+    "email": "jag-k58@ya.ru"
+  },
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/jag-k-stud/physic_lab-new/issues"
   },
   "homepage": "http://jag-k-stud.github.io/physic_lab-new/",
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.54",
-    "@electron-forge/maker-deb": "^6.0.0-beta.54",
-    "@electron-forge/maker-dmg": "^6.0.0-beta.54",
-    "@electron-forge/maker-pkg": "^6.0.0-beta.54",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
-    "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "@electron-forge/publisher-github": "^6.0.0-beta.54",
-    "electron": "^11.1.1"
+    "electron": "^11.1.1",
+    "electron-builder": "^22.9.1"
   },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-deb",
-          "platform": [
-            "linux"
-          ],
-          "config": {
-            "options": {
-              "categorises": [
-                "Education"
-              ],
-              "section": "education"
-            }
-          }
-        },
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "platform": [
-            "win32"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platform": [
-            "win32",
-            "darwin",
-            "linux"
-          ],
-          "config": {
-            "name": "Лабораторная работа по физике"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-dmg",
-          "platforms": [
-            "darwin"
-          ],
-          "config": {
-            "name": "Лабораторная по физике"
-          }
-        }
-      ],
-      "publishers": [
-        {
-          "name": "@electron-forge/publisher-github",
-          "config": {
-            "draft": true,
-            "repository": {
-              "owner": "jag-k-stud",
-              "name": "physic_lab-new"
-            }
-          }
-        }
-      ]
+  "build": {
+    "appId": "com.electron.physic-lab",
+    "productName": "Лабораторная работа по физике",
+    "copyright": "Copyright © 2020 ${author}",
+    "compression": "normal",
+    "publish": {
+      "provider": "github",
+      "releaseType": "prerelease",
+      "publishAutoUpdate": true
+    },
+    "directories": {
+      "output": "./out"
+    },
+    "mac": {
+      "category": "public.app-category.education"
+    },
+    "win": {
+      "target": "portable"
+    },
+    "linux": {
+      "target": "deb",
+      "category": "Education"
     }
   }
 }
