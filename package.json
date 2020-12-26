@@ -1,7 +1,6 @@
 {
   "name": "physic_lab-new",
-  "productName": "Лабораторная работа по физике",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Лабораторная работа по физике",
   "main": "main.js",
   "scripts": {
@@ -28,10 +27,11 @@
     "electron-builder": "^22.9.1"
   },
   "build": {
-    "appId": "com.electron.physic-lab",
-    "productName": "Лабораторная работа по физике",
+    "appId": "com.electron.${name}",
+    "productName": "${description}",
     "copyright": "Copyright © 2020 ${author}",
-    "compression": "normal",
+    "artifactName": "${channel}-${productName}-${os}.${ext}",
+    "compression": "maximum",
     "publish": {
       "provider": "github",
       "releaseType": "release",
