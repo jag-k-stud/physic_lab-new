@@ -28,9 +28,9 @@
   },
   "build": {
     "appId": "com.electron.${name}",
-    "productName": "${description}",
+    "productName": "${env.PRODUCT_NAME}",
     "copyright": "Copyright © 2020 ${author}",
-    "artifactName": "${channel}-${productName}-${os}.${ext}",
+    "artifactName": "${productName}-${os}.${ext}",
     "compression": "maximum",
     "publish": {
       "provider": "github",
