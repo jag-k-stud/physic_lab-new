@@ -34,7 +34,7 @@
     "compression": "normal",
     "publish": {
       "provider": "github",
-      "releaseType": "prerelease",
+      "releaseType": "release",
       "publishAutoUpdate": true
     },
     "directories": {
