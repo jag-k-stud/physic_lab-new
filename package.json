@@ -28,7 +28,7 @@
   },
   "build": {
     "appId": "com.electron.${name}",
-    "productName": "${env.PRODUCT_NAME}",
+    "productName": "Лабораторная работа по физике",
     "copyright": "Copyright © 2020 ${author}",
     "artifactName": "${productName}-${os}.${ext}",
     "compression": "maximum",
