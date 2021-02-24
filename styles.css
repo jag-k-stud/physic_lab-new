@@ -54,7 +54,7 @@ body {
 }
 
 .container {
-  margin: 2em;
+  margin: 36px;
   display: flex;
   flex-direction: row;
 }

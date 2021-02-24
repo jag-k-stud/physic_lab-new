@@ -9,12 +9,21 @@ const getNextElement = (cursorPosition, currentElement) => {
 };
 
 const ROUND = 10 ** 4;
+const scaleWidth = 1100;
+const scaleHeight = 700;
 const params = new URLSearchParams(window.location.search);
 const scale = +params.get('scale') || 1;
 
+document.body.dataset.scale = scale.toString();
+
 if (1 > scale && scale > 0) {
-  document.body.style.transform = `scale(${scale}) translate(-${100 * scale}%, -${100 * scale}%)`
+  document.body.style.transform = `translate(-50%, -50%) scale(${scale}) translate(50%, 50%)`;
+  document.body.dataset.width = (scaleWidth * scale).toString();
+  document.body.dataset.height = (scaleHeight * scale).toString();
 }
+// console.log(window.frameElement
+//   ? 'embedded in iframe or object'
+//   : 'not embedded or cross-origin')
 
 const resistorListResultElement = document.querySelector(`.js-resistors__list--result`)
 const switcher = document.querySelector(`.switcher`)
@@ -38,7 +47,6 @@ setResistance();
 
 const calculate = (bool) => {
   const resistor1 = +variant.value;
-  console.group("Data")
 
   if (bool) {
     voltage.value = +voltage.dataset.default;
@@ -50,12 +58,10 @@ const calculate = (bool) => {
       ) * ROUND) / ROUND;
     } else ampere.value = voltage.value / resistor1
 
-    console.log("ampere.value:", +ampere.value);
   } else {
     voltage.value = 0;
     ampere.value = 0;
   }
-  console.groupEnd()
 }
 
 variant.addEventListener('change', setResistance, false);
