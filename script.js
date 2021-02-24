@@ -9,6 +9,12 @@ const getNextElement = (cursorPosition, currentElement) => {
 };
 
 const ROUND = 10 ** 4;
+const params = new URLSearchParams(window.location.search);
+const scale = +params.get('scale') || 1;
+
+if (1 > scale && scale > 0) {
+  document.body.style.transform = `scale(${scale}) translate(-${100 * scale}%, -${100 * scale}%)`
+}
 
 const resistorListResultElement = document.querySelector(`.js-resistors__list--result`)
 const switcher = document.querySelector(`.switcher`)
@@ -70,10 +76,12 @@ switcher.addEventListener('click', (evt) => {
 })
 
 const dragstart = (evt) => {
+  if (evt.cancelable) evt.preventDefault();
   const t = evt.target;
   t.classList.add(`selected`);
 }
 const dragend = (evt) => {
+  if (evt.cancelable) evt.preventDefault();
   const t = evt.target;
   t.classList.remove(`selected`);
 }
@@ -125,10 +133,7 @@ for (const resistorListElement of document.querySelectorAll(`.js-resistors__list
   resistorListElement.addEventListener(`dragend`, dragend);
   resistorListElement.addEventListener(`dragover`, dragover);
 
-
   resistorListElement.addEventListener(`touchstart`, dragstart);
   resistorListElement.addEventListener(`touchend`, dragend);
   resistorListElement.addEventListener(`touchmove`, dragover);
-
-
 }
