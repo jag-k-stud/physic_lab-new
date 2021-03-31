@@ -10,6 +10,7 @@
   --resistor-width: calc(var(--resistor-real-width));
   --resistor-height: calc(var(--resistor-real-height));
   --outline-color: orange;
+  --padding: 36px;
 }
 
 *, *:before, *:after {
@@ -53,8 +54,13 @@ body {
   line-height: var(--line-height);
 }
 
+html {
+  padding: var(--padding);
+  /*width: calc(100% + var(--padding) * 2);*/
+  max-width: 100vw;
+}
+
 .container {
-  margin: 36px;
   display: flex;
   flex-direction: row;
 }

@@ -14,12 +14,16 @@ const scaleHeight = 700;
 const params = new URLSearchParams(window.location.search);
 const scale = +params.get('scale') || 1;
 
-document.body.dataset.scale = scale.toString();
+
+const u = document.body.parentElement
+
+u.dataset.scale = scale.toString();
 
 if (1 > scale && scale > 0) {
-  document.body.style.transform = `translate(-50%, -50%) scale(${scale}) translate(50%, 50%)`;
-  document.body.dataset.width = (scaleWidth * scale).toString();
-  document.body.dataset.height = (scaleHeight * scale).toString();
+  u.style.transform = `scale(${scale})`;
+  u.style.transformOrigin = 'top left'
+  u.dataset.width = (scaleWidth * scale).toString();
+  u.dataset.height = (scaleHeight * scale).toString();
 }
 // console.log(window.frameElement
 //   ? 'embedded in iframe or object'
@@ -135,11 +139,11 @@ for (const resistorListElement of document.querySelectorAll(`.js-resistors__list
     resistor.classList.remove(`active`);
   }
 
-  resistorListElement.addEventListener(`dragstart`, dragstart);
-  resistorListElement.addEventListener(`dragend`, dragend);
+  resistorListElement.addEventListener(`dragstart`, dragstart, {passive: true});
+  resistorListElement.addEventListener(`dragend`, dragend, {passive: true});
   resistorListElement.addEventListener(`dragover`, dragover);
 
-  resistorListElement.addEventListener(`touchstart`, dragstart);
-  resistorListElement.addEventListener(`touchend`, dragend);
+  resistorListElement.addEventListener(`touchstart`, dragstart, {passive: true});
+  resistorListElement.addEventListener(`touchend`, dragend, {passive: true});
   resistorListElement.addEventListener(`touchmove`, dragover);
 }
